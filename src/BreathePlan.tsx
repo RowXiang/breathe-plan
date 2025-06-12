@@ -28,35 +28,17 @@ export default function BreathePlan() {
     setChecked((prev) => ({ ...prev, [index]: !prev[index] }));
   };
 
-  return (
-    <div style={{ padding: '1rem', maxWidth: '600px', margin: '0 auto' }}>
-      <h1 style={{ fontSize: '24px', fontWeight: 'bold', textAlign: 'center' }}>🌿 Breathe计划 · 第1周</h1>
-      <p style={{ textAlign: 'center', color: 'gray' }}>
-        每日小练习，用呼吸带你回到自己
-      </p>
-
-      {tasks.map((task, index) => (
-        <div
-          key={index}
-          onClick={() => toggleCheck(index)}
-          style={{
-            border: '1px solid #ddd',
-            borderRadius: '8px',
-            padding: '1rem',
-            marginTop: '1rem',
-            backgroundColor: checked[index] ? '#f0f0f0' : '#fff',
-            cursor: 'pointer'
-          }}
-        >
-          <h2 style={{ textDecoration: checked[index] ? 'line-through' : 'none' }}>{task.title}</h2>
-          <p>🕓 {task.time} - {task.duration}</p>
-          <p style={{ fontStyle: 'italic', color: 'gray' }}>{task.note}</p>
+ return (
+    <div style={{ maxWidth: '400px', margin: '0 auto', padding: '1rem' }}>
+      <h1>🌿 Breathe计划 · 第1周</h1>
+      {tasks.map((t, i) => (
+        <div key={i} style={{ margin: '1rem 0', padding: '0.5rem', border: '1px solid #ccc', cursor: 'pointer' }} onClick={() => toggle(i)}>
+          <h2 style={{ textDecoration: checked[i] ? 'line-through' : 'none' }}>{t.title} <small>({t.duration})</small></h2>
+          <p>🕓 {t.time}</p>
+          <p style={{ fontStyle: 'italic', color: '#555' }}>{t.note}</p>
         </div>
       ))}
-
-      <div style={{ textAlign: 'center', marginTop: '1rem' }}>
-        <button onClick={() => setChecked({})}>🔁 重置今日进度</button>
-      </div>
+      <button onClick={() => setChecked({})}>🔁 重置今日进度</button>
     </div>
   );
 }
